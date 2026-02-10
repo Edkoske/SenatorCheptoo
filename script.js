@@ -238,7 +238,7 @@
     ].join("\n");
 
     // mailto fallback (static site friendly)
-    const mailto = `mailto:team@senatorcheptoo.ke?subject=${encodeURIComponent("Volunteer Sign-up")}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:brendazean18@gmail.com?subject=${encodeURIComponent("Volunteer Sign-up")}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
     volunteerResult.textContent = "Opening your email app to complete submission…";
     volunteerForm.reset();
@@ -270,7 +270,7 @@
       message.value,
     ].join("\n");
 
-    const mailto = `mailto:team@senatorcheptoo.ke?subject=${encodeURIComponent("Website message")}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:brendazean18@gmail.com?subject=${encodeURIComponent("Website message")}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
     contactResult.textContent = "Opening your email app to send the message…";
     contactForm.reset();

@@ -317,6 +317,17 @@ a{color:inherit;text-decoration:none}
 }
 .section-head p{margin:0; color:rgba(15,23,42,.74)}
 
+.elegant-banner{
+  margin-top:18px;
+  padding:18px 20px;
+  border-radius:22px;
+  background:linear-gradient(135deg, rgba(11,93,42,.08), rgba(215,166,42,.12));
+  border:1px solid rgba(15,23,42,.10);
+  box-shadow:var(--shadow-soft);
+}
+.elegant-banner h3{margin:6px 0 6px; font-size:22px}
+.elegant-banner p{margin:0; color:rgba(15,23,42,.76)}
+
 .grid-2{display:grid;grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; margin-top:18px}
 .grid-3{display:grid;grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; margin-top:18px}
 .grid-4{display:grid;grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px; margin-top:18px}

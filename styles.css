@@ -34,7 +34,11 @@ body{
   -webkit-font-smoothing:antialiased;
   font-smooth:always;
 }
-img{max-width:100%;height:auto}
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
 a{color:inherit;text-decoration:none}
 
 .sr-only{
@@ -261,7 +265,8 @@ a{color:inherit;text-decoration:none}
   flex-direction:column;
 }
 .portrait{
-  height:230px;
+  height:min(320px, 48vw);
+  min-height:220px;
   position:relative;
   overflow:hidden;
 }
@@ -271,6 +276,15 @@ a{color:inherit;text-decoration:none}
   object-fit:cover;
   object-position:center 20%;
   display:block;
+}
+.card img{
+  width:100%;
+  height:min(220px, 34vw);
+  min-height:180px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:12px;
+  margin-bottom:10px;
 }
 .hero-card-body{padding:16px 16px 18px}
 .hero-card-title{margin:0 0 8px; font-size:18px; letter-spacing:.1px}
@@ -423,7 +437,8 @@ a{color:inherit;text-decoration:none}
 }
 .photo-img{
   width:100%;
-  height:200px;
+  height:min(230px, 34vw);
+  min-height:190px;
   object-fit:cover;
   object-position:center;
   display:block;
@@ -641,6 +656,8 @@ dialog::backdrop{background:rgba(2,6,23,.55)}
   .grid-4{grid-template-columns:repeat(2, minmax(0,1fr))}
   .updates-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
   .values{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .portrait{height:min(280px, 60vw)}
+  .card img, .photo-img{height:min(210px, 46vw)}
 }
 @media (max-width: 760px){
   .site-nav{
@@ -665,6 +682,8 @@ dialog::backdrop{background:rgba(2,6,23,.55)}
   .gallery{grid-template-columns:1fr}
   .updates-grid{grid-template-columns:1fr}
   .donate-placeholder{grid-template-columns:1fr}
+  .portrait{height:260px; min-height:240px}
+  .card img, .photo-img{height:220px; min-height:220px}
 }
 
 /* Social Media Icons */

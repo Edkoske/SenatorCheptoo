@@ -2,6 +2,42 @@
   const qs = (sel, root = document) => root.querySelector(sel);
   const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
+  const FORM_EMAIL = "brendazean18@gmail.com";
+  const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_EMAIL}`;
+
+  const formNextUrl = (type) => {
+    const path = window.location.pathname.replace(/index\.html$/i, "").replace(/\/?$/, "/");
+    return `${window.location.origin}${path}?sent=${type}`;
+  };
+
+  // Update redirect URLs for current host (local or GitHub Pages)
+  qsa('form[action*="formsubmit.co"] input[name="_next"]').forEach((input) => {
+    const type = new URL(input.value).searchParams.get("sent");
+    if (type) input.value = formNextUrl(type);
+  });
+
+  // Show success message after FormSubmit redirect
+  const params = new URLSearchParams(window.location.search);
+  const sent = params.get("sent");
+  const sentMessages = {
+    volunteer: "Thank you! Your volunteer sign-up was received.",
+    contact: "Thank you! Your message was sent successfully.",
+    newsletter: "You're on the list. Thank you for subscribing!",
+  };
+  if (sent && sentMessages[sent]) {
+    const target =
+      sent === "volunteer"
+        ? qs("#volunteer-result")
+        : sent === "contact"
+          ? qs("#contact-result")
+          : qs("#newsletter-result");
+    if (target) target.textContent = sentMessages[sent];
+    const section =
+      sent === "volunteer" || sent === "newsletter" ? qs("#involved") : sent === "contact" ? qs("#contact") : null;
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState({}, "", window.location.pathname + window.location.hash);
+  }
+
   // Year
   const yearEl = qs("#year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -15,19 +51,90 @@
   setHeader();
   window.addEventListener("scroll", setHeader, { passive: true });
 
+  // Scroll reveal
+  const revealEls = qsa("[data-reveal]");
+  const showReveal = (el) => el.classList.add("is-visible");
+
+  const revealInView = () => {
+    revealEls.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) showReveal(el);
+    });
+  };
+
+  if (revealEls.length && "IntersectionObserver" in window) {
+    revealInView();
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            showReveal(entry.target);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
+    );
+    revealEls.forEach((el) => {
+      if (!el.classList.contains("is-visible")) revealObserver.observe(el);
+    });
+  } else {
+    revealEls.forEach(showReveal);
+  }
+
+  // Active nav on scroll
+  const sections = qsa("main section[id]");
+  const navLinks = qsa("[data-nav-link]");
+  const setActiveNav = () => {
+    const scrollPos = window.scrollY + 120;
+    let current = "";
+    sections.forEach((section) => {
+      if (section.offsetTop <= scrollPos) current = section.id;
+    });
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href")?.replace("#", "");
+      link.classList.toggle("is-active", href === current);
+    });
+  };
+  setActiveNav();
+  window.addEventListener("scroll", setActiveNav, { passive: true });
+
+  // Back to top
+  const backToTop = qs("[data-back-to-top]");
+  const toggleBackToTop = () => {
+    if (!backToTop) return;
+    const show = window.scrollY > 500;
+    backToTop.hidden = !show;
+  };
+  toggleBackToTop();
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
+  backToTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
   // Mobile nav
   const nav = qs("#site-nav");
   const navToggle = qs("[data-nav-toggle]");
+  const navLabel = qs("[data-nav-label]");
+
+  const setNavLabel = (open) => {
+    if (navLabel) navLabel.textContent = open ? "Close menu" : "Open menu";
+  };
+
   const closeNav = () => {
     if (!nav || !navToggle) return;
     nav.classList.remove("is-open");
     navToggle.setAttribute("aria-expanded", "false");
+    setNavLabel(false);
   };
+
   const openNav = () => {
     if (!nav || !navToggle) return;
     nav.classList.add("is-open");
     navToggle.setAttribute("aria-expanded", "true");
+    setNavLabel(true);
   };
+
   navToggle?.addEventListener("click", () => {
     const isOpen = nav?.classList.contains("is-open");
     isOpen ? closeNav() : openNav();
@@ -51,7 +158,15 @@
   qsa("[data-open-donate]").forEach((b) => b.addEventListener("click", () => safeShowModal(donateModal)));
   qs("[data-open-accessibility]")?.addEventListener("click", () => safeShowModal(a11yModal));
 
-  // Updates data (can be replaced with real campaign posts)
+  qsa("[data-close-modal]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      newsletterModal?.close();
+      donateModal?.close();
+      a11yModal?.close();
+    });
+  });
+
+  // Updates data (edit this list to publish new campaign posts)
   const UPDATES = [
     {
       id: "u1",
@@ -112,9 +227,12 @@
     }
   };
 
-  const updatesList = qs("#updates-list");
+  const updatesList = qs("#updates-panel");
+  let activeFilter = "all";
+
   const renderUpdates = (filter) => {
     if (!updatesList) return;
+    activeFilter = filter;
     const items = filter === "all" ? UPDATES : UPDATES.filter((u) => u.type === filter);
     updatesList.innerHTML = "";
 
@@ -131,7 +249,7 @@
       el.className = "update";
       el.setAttribute("data-type", u.type);
       el.innerHTML = `
-        <span class="badge ${u.type}">${u.type.toUpperCase()}</span>
+        <span class="badge ${u.type}">${u.type}</span>
         <h3>${escapeHtml(u.title)}</h3>
         <div class="update-meta">
           <span>${escapeHtml(formatDate(u.date))}</span>
@@ -146,23 +264,56 @@
   };
 
   const chips = qsa("[data-filter]");
+  const tabIds = { all: "tab-all", events: "tab-events", press: "tab-press", field: "tab-field" };
+
   const setActiveChip = (filter) => {
     chips.forEach((c) => {
       const isActive = c.getAttribute("data-filter") === filter;
       c.classList.toggle("is-active", isActive);
       c.setAttribute("aria-selected", isActive ? "true" : "false");
+      c.setAttribute("tabindex", isActive ? "0" : "-1");
     });
+    const tabId = tabIds[filter] || "tab-all";
+    updatesList?.setAttribute("aria-labelledby", tabId);
   };
+
+  const activateFilter = (filter) => {
+    setActiveChip(filter);
+    renderUpdates(filter);
+  };
+
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
-      const filter = chip.getAttribute("data-filter") || "all";
-      setActiveChip(filter);
-      renderUpdates(filter);
+      activateFilter(chip.getAttribute("data-filter") || "all");
     });
   });
-  renderUpdates("all");
 
-  // Forms (front-end validation + mailto fallback)
+  const tablist = qs('[role="tablist"]');
+  tablist?.addEventListener("keydown", (e) => {
+    const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+    if (!keys.includes(e.key)) return;
+
+    const tabs = chips;
+    const currentIndex = tabs.findIndex((t) => t.getAttribute("data-filter") === activeFilter);
+    if (currentIndex < 0) return;
+
+    e.preventDefault();
+    let nextIndex = currentIndex;
+
+    if (e.key === "ArrowRight") nextIndex = (currentIndex + 1) % tabs.length;
+    if (e.key === "ArrowLeft") nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    if (e.key === "Home") nextIndex = 0;
+    if (e.key === "End") nextIndex = tabs.length - 1;
+
+    const nextTab = tabs[nextIndex];
+    const filter = nextTab.getAttribute("data-filter") || "all";
+    activateFilter(filter);
+    nextTab.focus();
+  });
+
+  activateFilter("all");
+
+  // Form helpers
   const setFieldError = (input, msg) => {
     const hint = qs(`[data-error-for="${input.id}"]`);
     if (hint) hint.textContent = msg || "";
@@ -192,7 +343,7 @@
 
   const phoneOk = (input) => {
     const v = String(input.value || "").trim();
-    // Accept Kenyan formats and general international digits
+    if (!v) return true;
     const ok = /^[+()0-9\s-]{7,}$/.test(v);
     if (!ok) {
       setFieldError(input, "Please enter a valid phone number.");
@@ -202,12 +353,66 @@
     return true;
   };
 
+  const mailtoFallback = (subject, body) => {
+    const mailto = `mailto:${FORM_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  };
+
+  const submitNativeForm = (form) => {
+    form.setAttribute("action", `https://formsubmit.co/${FORM_EMAIL}`);
+    form.setAttribute("method", "POST");
+    form.submit();
+  };
+
+  const submitToFormEndpoint = async (payload) => {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        _captcha: "false",
+        _template: "table",
+        ...payload,
+      }),
+    });
+
+    if (!res.ok) throw new Error("Form submission failed");
+    const data = await res.json().catch(() => ({}));
+    if (data.success === "false" || data.success === false) throw new Error("Form submission rejected");
+    return data;
+  };
+
+  const handleFormSubmit = async (
+    e,
+    { form, resultEl, validate, buildPayload, successMessage, nativeFallback = true }
+  ) => {
+    e.preventDefault();
+    if (!validate()) {
+      if (resultEl) resultEl.textContent = "Please review the highlighted fields.";
+      return;
+    }
+
+    if (resultEl) resultEl.textContent = "Sending…";
+
+    try {
+      await submitToFormEndpoint(buildPayload());
+      if (resultEl) resultEl.textContent = successMessage;
+      form.reset();
+    } catch {
+      if (nativeFallback) {
+        submitNativeForm(form);
+        return;
+      }
+      if (resultEl) resultEl.textContent = "Opening your email app to complete submission…";
+      form.reset();
+    }
+  };
+
   const volunteerForm = qs("#volunteer-form");
   const volunteerResult = qs("#volunteer-result");
   volunteerForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!volunteerResult) return;
-
     const name = qs("#v-name");
     const phone = qs("#v-phone");
     const location = qs("#v-location");
@@ -215,89 +420,82 @@
     const message = qs("#v-message");
     if (!name || !phone || !location || !interest || !message) return;
 
-    const ok =
-      required(name, "Full name") &
-      required(phone, "Phone number") &
-      phoneOk(phone) &
-      required(location, "Ward / Location") &
-      required(interest, "Interest");
-
-    if (!ok) {
-      volunteerResult.textContent = "Please review the highlighted fields.";
-      return;
-    }
-
-    const body = [
-      "Volunteer sign-up (Campaign Website)",
-      "",
-      `Name: ${name.value}`,
-      `Phone: ${phone.value}`,
-      `Ward/Location: ${location.value}`,
-      `Interest: ${interest.value}`,
-      `Message: ${message.value || "-"}`,
-    ].join("\n");
-
-    // mailto fallback (static site friendly)
-    const mailto = `mailto:brendazean18@gmail.com?subject=${encodeURIComponent("Volunteer Sign-up")}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    volunteerResult.textContent = "Opening your email app to complete submission…";
-    volunteerForm.reset();
+    handleFormSubmit(e, {
+      form: volunteerForm,
+      resultEl: volunteerResult,
+      validate: () =>
+        required(name, "Full name") &&
+        required(phone, "Phone number") &&
+        phoneOk(phone) &&
+        required(location, "Ward / Location") &&
+        required(interest, "Interest"),
+      buildPayload: () => ({
+        _subject: "Volunteer Sign-up",
+        _next: formNextUrl("volunteer"),
+        name: name.value,
+        phone: phone.value,
+        location: location.value,
+        interest: interest.value,
+        message: message.value || "-",
+      }),
+      successMessage: "Thank you! Your sign-up was received.",
+    });
   });
 
   const contactForm = qs("#contact-form");
   const contactResult = qs("#contact-result");
   contactForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!contactResult) return;
-
     const name = qs("#c-name");
     const email = qs("#c-email");
     const message = qs("#c-message");
     if (!name || !email || !message) return;
 
-    const ok = required(name, "Full name") & required(email, "Email") & emailOk(email) & required(message, "Message");
-    if (!ok) {
-      contactResult.textContent = "Please review the highlighted fields.";
-      return;
-    }
-
-    const body = [
-      "Message from Campaign Website",
-      "",
-      `Name: ${name.value}`,
-      `Email: ${email.value}`,
-      "",
-      message.value,
-    ].join("\n");
-
-    const mailto = `mailto:brendazean18@gmail.com?subject=${encodeURIComponent("Website message")}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    contactResult.textContent = "Opening your email app to send the message…";
-    contactForm.reset();
+    handleFormSubmit(e, {
+      form: contactForm,
+      resultEl: contactResult,
+      validate: () =>
+        required(name, "Full name") && required(email, "Email") && emailOk(email) && required(message, "Message"),
+      buildPayload: () => ({
+        _subject: "Website message",
+        _next: formNextUrl("contact"),
+        name: name.value,
+        email: email.value,
+        message: message.value,
+      }),
+      successMessage: "Thank you! Your message was sent.",
+    });
   });
 
-  // Newsletter demo storage
-  const nContact = qs("#n-contact");
-  const nSubmit = qs("#n-submit");
-  nSubmit?.addEventListener("click", (e) => {
+  const newsletterForm = qs("#newsletter-form");
+  const newsletterResult = qs("#newsletter-result");
+  newsletterForm?.addEventListener("submit", async (e) => {
+    const nContact = qs("#n-contact");
     if (!nContact) return;
+
     const v = String(nContact.value || "").trim();
     if (!v) {
-      nContact.focus();
       e.preventDefault();
+      nContact.focus();
       return;
     }
+
+    e.preventDefault();
+    if (newsletterResult) newsletterResult.textContent = "Saving…";
+
     try {
-      const list = JSON.parse(localStorage.getItem("sc_updates_list") || "[]");
-      const next = Array.isArray(list) ? list : [];
-      next.push({ contact: v, ts: Date.now() });
-      localStorage.setItem("sc_updates_list", JSON.stringify(next));
+      await submitToFormEndpoint({
+        _subject: "Newsletter / SMS signup",
+        _next: formNextUrl("newsletter"),
+        contact: v,
+      });
+      if (newsletterResult) newsletterResult.textContent = "You're on the list. Thank you!";
+      newsletterForm.reset();
+      newsletterModal?.close();
     } catch {
-      // ignore storage failures
+      submitNativeForm(newsletterForm);
     }
   });
 
-  // Helpers
   function escapeHtml(s) {
     return String(s)
       .replaceAll("&", "&amp;")
@@ -307,4 +505,3 @@
       .replaceAll("'", "&#039;");
   }
 })();
-

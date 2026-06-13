@@ -7,12 +7,28 @@
       name="description"
       content="Official campaign website for Senator Cheptoo — candidate for Senator of Kericho County, Kenya. Leadership you can trust."
     />
-    <meta name="theme-color" content="#0B5D2A" />
+    <meta name="theme-color" content="#063318" />
+    <link rel="canonical" href="https://edkoske.github.io/SenatorCheptoo/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://edkoske.github.io/SenatorCheptoo/" />
+    <meta property="og:title" content="Senator Cheptoo | Leadership You Can Trust" />
+    <meta
+      property="og:description"
+      content="Official campaign website for Senator Cheptoo — candidate for Senator of Kericho County, Kenya."
+    />
+    <meta property="og:image" content="https://edkoske.github.io/SenatorCheptoo/assets/1781336661765.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Senator Cheptoo | Leadership You Can Trust" />
+    <meta
+      name="twitter:description"
+      content="Official campaign website for Senator Cheptoo — candidate for Senator of Kericho County, Kenya."
+    />
+    <meta name="twitter:image" content="https://edkoske.github.io/SenatorCheptoo/assets/1781336661765.jpg" />
     <title>Senator Cheptoo | Leadership You Can Trust</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -21,10 +37,20 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <div class="top-bar">
+      <div class="container top-bar-inner">
+        <p class="top-bar-text">
+          <span class="top-bar-badge">2027</span>
+          Candidate for Senate &mdash; Kericho County, Kenya
+        </p>
+        <a class="top-bar-link" href="#involved">Join the movement</a>
+      </div>
+    </div>
+
     <header class="site-header" data-elevate>
       <div class="container header-inner">
         <a class="brand" href="#top" aria-label="Senator Cheptoo campaign homepage">
-          <img class="brand-mark" src="./assets/senator-cheptoo-portrait.png" alt="Senator Cheptoo" width="34" height="34" />
+          <img class="brand-mark" src="./assets/senator-cheptoo-portrait.png" alt="" width="42" height="42" />
           <div class="brand-text">
             <span class="brand-name">Senator Cheptoo</span>
             <span class="brand-tag">Kericho County • Kenya</span>
@@ -32,17 +58,17 @@
         </a>
 
         <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
-          <span class="sr-only">Open menu</span>
+          <span class="sr-only" data-nav-label>Open menu</span>
           <span aria-hidden="true" class="nav-toggle-lines"></span>
         </button>
 
         <nav id="site-nav" class="site-nav" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#vision">Vision</a>
-          <a href="#agenda">Agenda</a>
-          <a href="#engagement">Community</a>
-          <a href="#updates">Updates</a>
-          <a href="#involved">Get involved</a>
+          <a href="#about" data-nav-link>About</a>
+          <a href="#vision" data-nav-link>Vision</a>
+          <a href="#agenda" data-nav-link>Agenda</a>
+          <a href="#engagement" data-nav-link>Community</a>
+          <a href="#updates" data-nav-link>Updates</a>
+          <a href="#involved" data-nav-link>Get involved</a>
           <a class="nav-cta" href="#contact">Contact</a>
         </nav>
       </div>
@@ -50,19 +76,21 @@
 
     <main id="main">
       <section id="top" class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Kericho County Senatorial Campaign</p>
-            <h1 class="hero-title">Senator Cheptoo – Leadership You Can Trust</h1>
+            <h1 class="hero-title">Leadership You Can <em>Trust</em></h1>
+            <p class="hero-name">Senator Cheptoo</p>
             <p class="hero-lede">
-              Leading with integrity, listening first, and delivering results. Together, we'll build a Kericho where every
+              Leading with integrity, listening first, and delivering results. Together, we will build a Kericho where every
               young person finds opportunity, farmers are fairly rewarded, women thrive, and public resources serve the people.
             </p>
 
             <div class="hero-actions">
               <a class="btn btn-primary" href="#involved">Join the Movement</a>
-              <a class="btn btn-ghost" href="#involved">Volunteer</a>
-              <a class="btn btn-light" href="#contact">Contact Us</a>
+              <a class="btn btn-ghost" href="#volunteer-form">Volunteer</a>
+              <a class="btn btn-outline" href="#contact">Contact Us</a>
             </div>
 
             <ul class="hero-metrics" aria-label="Campaign focus areas">
@@ -87,9 +115,12 @@
                 class="portrait-img"
                 src="./assets/1781336661765.jpg"
                 alt="Senator Cheptoo"
+                width="720"
+                height="900"
                 loading="eager"
                 decoding="async"
               />
+              <span class="portrait-badge">Kericho County</span>
             </div>
             <div class="hero-card-body">
               <h2 class="hero-card-title">A leader for every ward</h2>
@@ -111,9 +142,31 @@
         <div class="hero-wave" aria-hidden="true"></div>
       </section>
 
+      <div class="trust-bar" aria-label="Campaign reach">
+        <div class="container trust-grid">
+          <div class="trust-item" data-reveal>
+            <strong>30+</strong>
+            <span>Wards &amp; trading centres engaged</span>
+          </div>
+          <div class="trust-item" data-reveal>
+            <strong>6</strong>
+            <span>Constituencies across Kericho</span>
+          </div>
+          <div class="trust-item" data-reveal>
+            <strong>100%</strong>
+            <span>Grassroots, people-first approach</span>
+          </div>
+          <div class="trust-item" data-reveal>
+            <strong>1</strong>
+            <span>Vision: accountable Senate leadership</span>
+          </div>
+        </div>
+      </div>
+
       <section id="about" class="section">
         <div class="container">
-          <div class="section-head">
+          <div class="section-head" data-reveal>
+            <span class="section-label">Our Candidate</span>
             <h2>About Senator Cheptoo</h2>
             <p>
               A daughter of Kericho with deep roots in our communities, a track record of getting things done, and an unwavering commitment to serve with integrity.
@@ -121,14 +174,16 @@
           </div>
 
           <div class="grid-2">
-            <article class="card">
+            <article class="card card-elevated" data-reveal>
               <h3>Background</h3>
               <img
+                class="card-img"
                 src="./assets/1781336561631.jpg"
                 alt="Senator Cheptoo speaking to residents of Kericho County"
+                width="900"
+                height="600"
                 loading="lazy"
                 decoding="async"
-                style="border-radius: 12px; margin-bottom: 10px"
               />
               <p>
                 Senator Cheptoo is a daughter of Kericho County, inspired by the resilience of farmers, the ambition of
@@ -142,14 +197,16 @@
               </ul>
             </article>
 
-            <article class="card">
-              <h3>Education & leadership journey</h3>
+            <article class="card card-elevated" data-reveal>
+              <h3>Education &amp; leadership journey</h3>
               <img
+                class="card-img"
                 src="./assets/1781336665506.jpg"
                 alt="Leaders praying with Senator Cheptoo"
+                width="900"
+                height="600"
                 loading="lazy"
                 decoding="async"
-                style="border-radius: 12px; margin-bottom: 10px"
               />
               <p>
                 With a strong academic foundation and years of community organizing, Senator Cheptoo has championed
@@ -182,19 +239,23 @@
           </div>
 
           <div class="values">
-            <div class="value">
+            <div class="value" data-reveal>
+              <span class="value-num" aria-hidden="true">01</span>
               <h3>Integrity</h3>
               <p>Honest, transparent leadership that puts public interest first.</p>
             </div>
-            <div class="value">
+            <div class="value" data-reveal>
+              <span class="value-num" aria-hidden="true">02</span>
               <h3>Service</h3>
               <p>Listening, showing up, and solving problems—together with wananchi.</p>
             </div>
-            <div class="value">
+            <div class="value" data-reveal>
+              <span class="value-num" aria-hidden="true">03</span>
               <h3>Accountability</h3>
               <p>Protecting public resources and demanding results in every project.</p>
             </div>
-            <div class="value">
+            <div class="value" data-reveal>
+              <span class="value-num" aria-hidden="true">04</span>
               <h3>Unity</h3>
               <p>Bringing people together across wards, generations, and livelihoods.</p>
             </div>
@@ -204,43 +265,44 @@
 
       <section id="vision" class="section section-tint">
         <div class="container">
-          <div class="section-head">
+          <div class="section-head" data-reveal>
+            <span class="section-label">The Vision</span>
             <h2>Vision for Kericho County</h2>
             <p>Real progress you can see and feel—better job opportunities, higher farm income, stronger schools, and leadership you can trust.</p>
           </div>
 
           <div class="grid-4">
-            <article class="icon-card">
+            <article class="icon-card" data-reveal>
               <div class="icon" aria-hidden="true">
                 <img src="./assets/icons/briefcase.svg" alt="" width="28" height="28" />
               </div>
-              <h3>Youth empowerment & employment</h3>
+              <h3>Youth empowerment &amp; employment</h3>
               <p>Real jobs, skills training, and fair chances to start your business without kickbacks or connections.</p>
             </article>
-            <article class="icon-card">
+            <article class="icon-card" data-reveal>
               <div class="icon" aria-hidden="true">
                 <img src="./assets/icons/users.svg" alt="" width="28" height="28" />
               </div>
               <h3>Women empowerment</h3>
               <p>Your women's groups get real funding, your savings circles matter, and your safety is protected.</p>
             </article>
-            <article class="icon-card">
+            <article class="icon-card" data-reveal>
               <div class="icon" aria-hidden="true">
                 <img src="./assets/icons/leaf.svg" alt="" width="28" height="28" />
               </div>
-              <h3>Agriculture & tea farmers’ welfare</h3>
+              <h3>Agriculture &amp; tea farmers' welfare</h3>
               <p>Fair tea prices, transparent deductions, less waste, and your voice heard in the Senate on farm issues.</p>
             </article>
-            <article class="icon-card">
+            <article class="icon-card" data-reveal>
               <div class="icon" aria-hidden="true">
                 <img src="./assets/icons/heart.svg" alt="" width="28" height="28" />
               </div>
-              <h3>Education & health services</h3>
+              <h3>Education &amp; health services</h3>
               <p>Schools that get what they're promised, clinics with medicine, and no excuses—just results.</p>
             </article>
           </div>
 
-          <div class="callout">
+          <div class="callout" data-reveal>
             <div>
               <h3>Good governance & accountability</h3>
               <p>
@@ -255,30 +317,34 @@
 
       <section id="agenda" class="section">
         <div class="container">
-          <div class="section-head">
-            <h2>Key Agenda / Manifesto</h2>
-            <p>Clear, measurable commitments—how Cheptoo will serve you if elected to the Senate.</p>
+          <div class="section-head" data-reveal>
+            <span class="section-label">The Manifesto</span>
+            <h2>Key Agenda</h2>
+            <p>Clear, measurable commitments&mdash;how Cheptoo will serve you if elected to the Senate.</p>
           </div>
 
           <div class="grid-3">
-            <article class="card">
-              <h3>Jobs & opportunity</h3>
+            <article class="card manifesto-card" data-reveal>
+              <span class="manifesto-num" aria-hidden="true">01</span>
+              <h3>Jobs &amp; opportunity</h3>
               <ul class="list-bullets">
                 <li>County-wide skills and mentorship programs for youth</li>
                 <li>Support for MSMEs and small traders through training and linkages</li>
                 <li>Promote fair procurement opportunities for local enterprises</li>
               </ul>
             </article>
-            <article class="card">
-              <h3>Women & families</h3>
+            <article class="card manifesto-card" data-reveal>
+              <span class="manifesto-num" aria-hidden="true">02</span>
+              <h3>Women &amp; families</h3>
               <ul class="list-bullets">
                 <li>Strengthen women groups with capacity building and market access</li>
                 <li>Champion safer public spaces and community-based support systems</li>
                 <li>Advocate for inclusive development for persons with disabilities</li>
               </ul>
             </article>
-            <article class="card">
-              <h3>Farmers & agriculture</h3>
+            <article class="card manifesto-card" data-reveal>
+              <span class="manifesto-num" aria-hidden="true">03</span>
+              <h3>Farmers &amp; agriculture</h3>
               <ul class="list-bullets">
                 <li>Push for fair tea prices, timely payments, and transparent deductions</li>
                 <li>Support diversification and value addition to increase incomes</li>
@@ -287,16 +353,18 @@
             </article>
           </div>
 
-          <div class="grid-2" style="margin-top: 18px">
-            <article class="card">
-              <h3>Education & health</h3>
+          <div class="grid-2 grid-2-spaced">
+            <article class="card manifesto-card" data-reveal>
+              <span class="manifesto-num" aria-hidden="true">04</span>
+              <h3>Education &amp; health</h3>
               <ul class="list-bullets">
                 <li>Oversight for fair, efficient funding for health facilities and schools</li>
                 <li>Support bursary transparency and merit-based access for needy students</li>
                 <li>Promote youth mental health and community health outreach programs</li>
               </ul>
             </article>
-            <article class="card">
+            <article class="card manifesto-card" data-reveal>
+              <span class="manifesto-num" aria-hidden="true">05</span>
               <h3>Governance</h3>
               <ul class="list-bullets">
                 <li>Zero tolerance for corruption—publish commitments and progress updates</li>
@@ -310,17 +378,20 @@
 
       <section id="engagement" class="section section-tint">
         <div class="container">
-          <div class="section-head">
+          <div class="section-head" data-reveal>
+            <span class="section-label">On the Ground</span>
             <h2>Community Engagement</h2>
             <p>Leadership starts with listening. Here's where we've shown up, listened, and learned from you.</p>
           </div>
 
           <div class="gallery" aria-label="Community engagement highlights">
-            <figure class="photo">
+            <figure class="photo" data-reveal>
               <img
                 class="photo-img"
                 src="./assets/1781336673487.jpg"
                 alt="Community engagement moment"
+                width="900"
+                height="600"
                 loading="lazy"
                 decoding="async"
               />
@@ -329,11 +400,13 @@
                 <span>Open forums, respectful dialogue, real solutions.</span>
               </figcaption>
             </figure>
-            <figure class="photo">
+            <figure class="photo" data-reveal>
               <img
                 class="photo-img"
                 src="./assets/1781336677044.jpg"
                 alt="Addressing the community during a campaign event"
+                width="900"
+                height="600"
                 loading="lazy"
                 decoding="async"
               />
@@ -342,11 +415,13 @@
                 <span>Empowerment through opportunity and support.</span>
               </figcaption>
             </figure>
-            <figure class="photo">
+            <figure class="photo" data-reveal>
               <img
                 class="photo-img"
                 src="./assets/1781336705341.jpg"
                 alt="Community meeting and address"
+                width="900"
+                height="600"
                 loading="lazy"
                 decoding="async"
               />
@@ -357,57 +432,118 @@
             </figure>
           </div>
 
-          <div class="quote">
+          <div class="quote" data-reveal>
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
             <p class="quote-text">
-              “Leadership is not a title—it is service. My commitment is to be present, to listen, and to deliver.”
+              Leadership is not a title&mdash;it is service. My commitment is to be present, to listen, and to deliver.
             </p>
-            <p class="quote-by">— Senator Cheptoo</p>
+            <p class="quote-by">Senator Cheptoo</p>
           </div>
         </div>
       </section>
 
       <section id="updates" class="section">
         <div class="container">
-          <div class="section-head">
-            <h2>News & Updates</h2>
+          <div class="section-head" data-reveal>
+            <span class="section-label">Latest News</span>
+            <h2>News &amp; Updates</h2>
             <p>Campaign activities, press statements, and upcoming events.</p>
           </div>
 
           <div class="updates-toolbar">
             <div class="chip-row" role="tablist" aria-label="Updates filters">
-              <button class="chip is-active" type="button" data-filter="all" role="tab" aria-selected="true">
+              <button
+                class="chip is-active"
+                type="button"
+                id="tab-all"
+                data-filter="all"
+                role="tab"
+                aria-selected="true"
+                aria-controls="updates-panel"
+                tabindex="0"
+              >
                 All
               </button>
-              <button class="chip" type="button" data-filter="events" role="tab" aria-selected="false">Events</button>
-              <button class="chip" type="button" data-filter="press" role="tab" aria-selected="false">Press</button>
-              <button class="chip" type="button" data-filter="field" role="tab" aria-selected="false">Field</button>
+              <button
+                class="chip"
+                type="button"
+                id="tab-events"
+                data-filter="events"
+                role="tab"
+                aria-selected="false"
+                aria-controls="updates-panel"
+                tabindex="-1"
+              >
+                Events
+              </button>
+              <button
+                class="chip"
+                type="button"
+                id="tab-press"
+                data-filter="press"
+                role="tab"
+                aria-selected="false"
+                aria-controls="updates-panel"
+                tabindex="-1"
+              >
+                Press
+              </button>
+              <button
+                class="chip"
+                type="button"
+                id="tab-field"
+                data-filter="field"
+                role="tab"
+                aria-selected="false"
+                aria-controls="updates-panel"
+                tabindex="-1"
+              >
+                Field
+              </button>
             </div>
             <button class="btn btn-light btn-sm" type="button" data-open-newsletter>Get SMS/Email updates</button>
           </div>
 
-          <div id="updates-list" class="updates-grid" aria-live="polite"></div>
+          <div
+            id="updates-panel"
+            class="updates-grid"
+            role="tabpanel"
+            aria-labelledby="tab-all"
+            aria-live="polite"
+          ></div>
         </div>
       </section>
 
       <section id="involved" class="section section-tint">
         <div class="container">
-          <div class="section-head">
+          <div class="section-head" data-reveal>
+            <span class="section-label">Take Action</span>
             <h2>Get Involved</h2>
             <p>Join the movement—volunteer, share ideas, and help us reach every voter across Kericho County.</p>
           </div>
 
-          <div class="elegant-banner">
+          <div class="elegant-banner" data-reveal>
             <p class="eyebrow">Join the movement</p>
             <h3>Form ni Senator Cheptoo Ke</h3>
             <p>Step into a future shaped by service, dignity, and purposeful leadership. Share your details and stand with a campaign rooted in community.</p>
           </div>
 
           <div class="grid-2">
-            <article class="card">
+            <article class="card card-elevated" data-reveal>
               <h3>Be part of the movement</h3>
               <p class="muted">Your voice matters. Share your details and help us build a stronger, more connected Kericho.</p>
 
-              <form class="form" id="volunteer-form" novalidate>
+              <form
+                class="form"
+                id="volunteer-form"
+                action="https://formsubmit.co/brendazean18@gmail.com"
+                method="POST"
+                novalidate
+              >
+                <input type="hidden" name="_subject" value="Volunteer Sign-up" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_next" value="https://edkoske.github.io/SenatorCheptoo/?sent=volunteer" />
                 <div class="form-row">
                   <label for="v-name">Full name</label>
                   <input id="v-name" name="name" type="text" autocomplete="name" required />
@@ -451,7 +587,7 @@
               </form>
             </article>
 
-            <article class="card">
+            <article class="card card-elevated" data-reveal>
               <h3>Support the campaign</h3>
               <p>
                 Your help—whether volunteer time, a donation, or sharing our message—makes the difference. Every contribution funds real town-halls, reaches voters, and keeps us accountable.
@@ -479,7 +615,7 @@
               </div>
 
               <p class="small muted">
-                Note: Payment details are intentionally not hard-coded. Add official paybill/till once confirmed.
+                Official payment details will be published here once confirmed by the campaign finance team.
               </p>
             </article>
           </div>
@@ -488,13 +624,14 @@
 
       <section id="contact" class="section">
         <div class="container">
-          <div class="section-head">
+          <div class="section-head" data-reveal>
+            <span class="section-label">Get in Touch</span>
             <h2>Contact</h2>
             <p>Have a question? A concern? An idea? We're listening. Reach us anytime.</p>
           </div>
 
           <div class="grid-2">
-            <article class="card">
+            <article class="card card-elevated" data-reveal>
               <h3>Direct contacts</h3>
               <ul class="contact-list">
                 <li>
@@ -507,40 +644,39 @@
                 </li>
               </ul>
 
-              <h3 style="margin-top: 18px"></h3>
+              <h3 class="follow-heading">Follow us</h3>
               <div class="social-row" aria-label="Social media links">
                 <a class="social-icon" href="https://www.facebook.com/chiku.zean" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
                   </svg>
                 </a>
-                
-                
-                <!-- <a class="social-icon"
-   href="https://wa.me/254712234615"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="WhatsApp">
-
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
-       xmlns="http://www.w3.org/2000/svg">
-    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.91.5 3.77 1.45 5.41L2 22l4.84-1.58a9.86 9.86 0 0 0 5.2 1.45h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.12-2.9-6.99A9.86 9.86 0 0 0 12.04 2zm5.73 13.54c-.24.68-1.38 1.3-1.9 1.37-.48.07-1.1.1-1.77-.11-.4-.13-.91-.3-1.57-.58-2.76-1.19-4.56-3.96-4.7-4.14-.14-.18-1.13-1.5-1.13-2.86 0-1.36.71-2.03.96-2.31.25-.28.55-.35.73-.35h.52c.17 0 .41-.06.64.49.24.58.8 1.99.87 2.14.07.15.12.32.02.5-.1.18-.15.3-.3.46-.15.17-.32.38-.46.5-.15.13-.3.27-.13.54.17.27.77 1.27 1.66 2.06 1.14 1.02 2.1 1.34 2.4 1.49.3.15.47.13.64-.08.17-.21.74-.87.94-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.13.07.75-.17 1.43z"/>
-  </svg>
-
-</a> -->
-
+                <a class="social-icon" href="https://wa.me/254712234615" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.91.5 3.77 1.45 5.41L2 22l4.84-1.58a9.86 9.86 0 0 0 5.2 1.45h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.12-2.9-6.99A9.86 9.86 0 0 0 12.04 2zm5.73 13.54c-.24.68-1.38 1.3-1.9 1.37-.48.07-1.1.1-1.77-.11-.4-.13-.91-.3-1.57-.58-2.76-1.19-4.56-3.96-4.7-4.14-.14-.18-1.13-1.5-1.13-2.86 0-1.36.71-2.03.96-2.31.25-.28.55-.35.73-.35h.52c.17 0 .41-.06.64.49.24.58.8 1.99.87 2.14.07.15.12.32.02.5-.1.18-.15.3-.3.46-.15.17-.32.38-.46.5-.15.13-.3.27-.13.54.17.27.77 1.27 1.66 2.06 1.14 1.02 2.1 1.34 2.4 1.49.3.15.47.13.64-.08.17-.21.74-.87.94-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.13.07.75-.17 1.43z"/>
+                  </svg>
+                </a>
                 <a class="social-icon" href="https://www.tiktok.com/t/ZP899X8vS/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.89 2.89 0 0 1 2.31-4.64 2.84 2.84 0 0 1 .88.13V9.4a6.26 6.26 0 0 0-1-.1 6.15 6.15 0 1 0 6.65 6.01V9.86a8.38 8.38 0 0 0 4.67 1.48v-3.63a4.94 4.94 0 0 1-.52-.08z"/>
                   </svg>
                 </a>
               </div>
-              <p class="small muted"></p>
             </article>
 
-            <article class="card">
+            <article class="card card-elevated" data-reveal>
               <h3>Send a message</h3>
-              <form class="form" id="contact-form" novalidate>
+              <form
+                class="form"
+                id="contact-form"
+                action="https://formsubmit.co/brendazean18@gmail.com"
+                method="POST"
+                novalidate
+              >
+                <input type="hidden" name="_subject" value="Website message" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_next" value="https://edkoske.github.io/SenatorCheptoo/?sent=contact" />
                 <div class="form-row">
                   <label for="c-name">Full name</label>
                   <input id="c-name" name="name" type="text" autocomplete="name" required />
@@ -572,53 +708,102 @@
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-brand">
-          <img src="./assets/senator-cheptoo-portrait.png" alt="Senator Cheptoo" width="34" height="34" />
-          <div>
-            <p class="footer-title">Senator Cheptoo</p>
-            <p class="footer-sub">Leadership You Can Trust • Kericho County</p>
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-col footer-col-brand">
+            <div class="footer-brand">
+              <img src="./assets/senator-cheptoo-portrait.png" alt="" width="48" height="48" />
+              <div>
+                <p class="footer-title">Senator Cheptoo</p>
+                <p class="footer-sub">Leadership You Can Trust</p>
+              </div>
+            </div>
+            <p class="footer-about">
+              A people-centred campaign for the Senate seat of Kericho County&mdash;rooted in integrity, service, and accountable leadership for every ward.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-heading">Navigate</p>
+            <nav class="footer-nav" aria-label="Footer">
+              <a href="#about">About</a>
+              <a href="#vision">Vision</a>
+              <a href="#agenda">Agenda</a>
+              <a href="#updates">Updates</a>
+              <a href="#involved">Volunteer</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-heading">Connect</p>
+            <ul class="footer-contact">
+              <li><a href="tel:+254712234615">+254 712 234 615</a></li>
+              <li><a href="mailto:brendazean18@gmail.com">brendazean18@gmail.com</a></li>
+            </ul>
+            <div class="social-row footer-social" aria-label="Social media">
+              <a class="social-icon" href="https://www.facebook.com/chiku.zean" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+              </a>
+              <a class="social-icon" href="https://wa.me/254712234615" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.91.5 3.77 1.45 5.41L2 22l4.84-1.58a9.86 9.86 0 0 0 5.2 1.45h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.12-2.9-6.99A9.86 9.86 0 0 0 12.04 2zm5.73 13.54c-.24.68-1.38 1.3-1.9 1.37-.48.07-1.1.1-1.77-.11-.4-.13-.91-.3-1.57-.58-2.76-1.19-4.56-3.96-4.7-4.14-.14-.18-1.13-1.5-1.13-2.86 0-1.36.71-2.03.96-2.31.25-.28.55-.35.73-.35h.52c.17 0 .41-.06.64.49.24.58.8 1.99.87 2.14.07.15.12.32.02.5-.1.18-.15.3-.3.46-.15.17-.32.38-.46.5-.15.13-.3.27-.13.54.17.27.77 1.27 1.66 2.06 1.14 1.02 2.1 1.34 2.4 1.49.3.15.47.13.64-.08.17-.21.74-.87.94-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.13.07.75-.17 1.43z"/></svg>
+              </a>
+              <a class="social-icon" href="https://www.tiktok.com/t/ZP899X8vS/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.89 2.89 0 0 1 2.31-4.64 2.84 2.84 0 0 1 .88.13V9.4a6.26 6.26 0 0 0-1-.1 6.15 6.15 0 1 0 6.65 6.01V9.86a8.38 8.38 0 0 0 4.67 1.48v-3.63a4.94 4.94 0 0 1-.52-.08z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="footer-links">
-          <a href="#about">About</a>
-          <a href="#agenda">Agenda</a>
-          <a href="#updates">Updates</a>
-          <a href="#involved">Volunteer</a>
-          <a href="#contact">Contact</a>
-        </div>
-
-        <div class="footer-meta">
-          <p class="small muted">© <span id="year"></span> Senator Cheptoo Campaign. All rights reserved.</p>
-          <p class="small muted">
-            Built for accessibility and speed. <button class="linklike" type="button" data-open-accessibility>Accessibility</button>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <p class="small">&copy; <span id="year"></span> Senator Cheptoo Campaign. All rights reserved.</p>
+          <p class="small">
+            <button class="linklike" type="button" data-open-accessibility>Accessibility</button>
+            <span aria-hidden="true">&middot;</span>
+            <a class="footer-legal" href="#top">Back to top</a>
           </p>
         </div>
       </div>
     </footer>
 
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" hidden>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
     <!-- Newsletter modal -->
     <dialog class="modal" id="newsletter-modal" aria-labelledby="newsletter-title">
-      <form method="dialog" class="modal-card">
+      <div class="modal-card">
         <div class="modal-head">
           <h2 id="newsletter-title">Get updates</h2>
-          <button class="icon-btn" value="cancel" aria-label="Close">✕</button>
+          <button class="icon-btn" type="button" data-close-modal aria-label="Close">✕</button>
         </div>
         <p class="muted">
-          Add your contact so the team can share upcoming events and announcements. (Front-end demo; connect to your
-          preferred SMS/email tool later.)
+          Add your phone or email and the team will share upcoming events and announcements.
         </p>
-        <div class="form-row">
-          <label for="n-contact">Phone or email</label>
-          <input id="n-contact" name="contact" type="text" placeholder="+254... or name@email.com" required />
-        </div>
-        <menu class="modal-actions">
-          <button class="btn btn-ghost" value="cancel">Cancel</button>
-          <button class="btn btn-primary" id="n-submit" value="default">Save</button>
-        </menu>
-        <p class="small muted">We respect privacy. No spam.</p>
-      </form>
+        <form
+          id="newsletter-form"
+          class="form"
+          action="https://formsubmit.co/brendazean18@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Newsletter / SMS signup" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://edkoske.github.io/SenatorCheptoo/?sent=newsletter" />
+          <div class="form-row">
+            <label for="n-contact">Phone or email</label>
+            <input id="n-contact" name="contact" type="text" placeholder="+254... or name@email.com" required />
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-ghost" type="button" data-close-modal>Cancel</button>
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+          <p class="form-note" id="newsletter-result" role="status" aria-live="polite"></p>
+          <p class="small muted">We respect privacy. No spam.</p>
+        </form>
+      </div>
     </dialog>
 
     <!-- Donate modal -->
@@ -629,8 +814,7 @@
           <button class="icon-btn" value="cancel" aria-label="Close">✕</button>
         </div>
         <p class="muted">
-          Add official paybill/till details once confirmed. For now, this is a professional placeholder to keep the site
-          lawful and accurate.
+          Official campaign contribution details will be published here once confirmed. All donations are recorded in line with electoral law.
         </p>
         <div class="donate-placeholder">
           <div>
